@@ -1,0 +1,34 @@
+<div class="result-container">
+
+  <mat-card *ngIf="calcResultToDisplay" class="result-item">
+    <span>Default path (use soe, use ships, use wyvern)</span>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="card-part">
+      <div *ngFor = "let edge of calcResultToDisplay.defaultPath">
+        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.type)}})
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <span class="card-part">
+      Total price: {{calcResultToDisplay.defaultPrice}}
+    </span>
+  </mat-card>
+
+  <mat-card *ngIf="calcResultToDisplay && calcResultToDisplay.customPath.length > 0" class="result-item">
+    <span>Your custom path</span>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="card-part">
+      <div *ngFor = "let edge of calcResultToDisplay.customPath">
+        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.type)}})
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <span class="card-part">
+      Total price: {{calcResultToDisplay.customPrice}}
+    </span>
+  </mat-card>
+</div>

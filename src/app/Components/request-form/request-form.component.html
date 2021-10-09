@@ -1,0 +1,78 @@
+<mat-card class="wrapper">
+  <form [formGroup]="calcForm" class="form-container">
+
+    <div class="form-item">
+      <mat-form-field>
+        <mat-label>Source point</mat-label>
+        <input type="text"
+        placeholder="Pick one"
+        aria-label="Source point"
+        matInput
+        (input)="changeSrc()"
+        (blur)="handleControlBlur()"
+        formControlName="source"
+        [matAutocomplete]="autoSource">
+        <mat-autocomplete #autoSource="matAutocomplete">
+         <mat-option *ngFor="let source of (sources$ | async)" [value]="source">
+           {{source}}
+         </mat-option>
+       </mat-autocomplete>
+      </mat-form-field>
+
+      <div *ngIf="sourceControl.invalid && (sourceControl.touched)"
+      class="alert">
+        <div *ngIf="sourceControl.errors?.required" class="error-message">
+          Source is required.
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="destinations" class="form-item"
+      *ngFor="let destination of destinations.controls; let i = index;">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>Destination №{{i+1}}</mat-label>
+          <input type="text"
+          placeholder="Pick one"
+          aria-label="Destination Point"
+          matInput
+          (input)="changeDest(i)"
+          formControlName="destination"
+          (blur)="handleControlBlur()"
+          [matAutocomplete]="autoDest">
+          <mat-autocomplete #autoDest="matAutocomplete">
+            <mat-option *ngFor="let destination of (destinations$ | async)" [value]="destination">
+              {{destination}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <div *ngIf="destinations.controls[i].invalid && (destinations.controls[i].touched)"
+        class="alert">
+          <div class="error-message">
+            Destination is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <div class="form-item button-section">
+    <button mat-raised-button color="basic" (click)="addItem()" [disabled]="destinations.controls.length >= maxCount">Add item</button>
+    <button mat-raised-button color="basic" (click)="removeItem()" [disabled]="destinations.controls.length === minCount">Remove item</button>
+   </div>
+
+    <section class="form-item check-box-section">
+      <mat-checkbox>Wyvern</mat-checkbox>
+      <mat-checkbox>Soe</mat-checkbox>
+      <mat-checkbox>Ships</mat-checkbox>
+    </section>
+
+    <div class="form-item">
+      <button mat-raised-button color="primary" (click)="submit()">Calculate</button>
+    </div>
+  </form>
+
+  <mat-card-footer>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

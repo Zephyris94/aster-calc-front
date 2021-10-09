@@ -1,0 +1,41 @@
+.wrapper {
+  width: fit-content;
+  margin:auto;
+}
+
+.form-container {
+  margin: 1rem 1rem 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-item {
+  padding-top: 0.5rem;
+}
+
+.check-box-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 15rem;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 13rem;
+}
+
+.error-message {
+  font-size: 10px;
+  color:red;
+}
+
+.alert {
+  padding-top: 0px;
+  margin-top: 0px;
+}
