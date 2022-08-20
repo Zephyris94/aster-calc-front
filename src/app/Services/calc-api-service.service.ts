@@ -15,14 +15,14 @@ export class CalcApiService extends ApiService {
   }
 
   getSources(): Observable<Array<string>> {
-    return super.getQuery<any, string[]>(`calcapi/Sources`, {});
+    return super.getQuery<any, string[]>(`nodeapi/sources`, {});
   }
 
   getDestinations(): Observable<Array<string>> {
-    return super.getQuery<any, string[]>(`calcapi/Destinations`, {});
+    return super.getQuery<any, string[]>(`nodeapi/sources`, {});
   }
 
   calculate(request: PathRequestModel): Observable<CalculationResultModel> {
-    return super.postQuery<CalculationResultModel>(`calcapi/Calculate`, request);
+    return super.postQuery<CalculationResultModel>(`PathFindingApi/Calculate`, request);
   }
 }
