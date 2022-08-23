@@ -19,7 +19,7 @@ export class CalcApiService extends ApiService {
   }
 
   getDestinations(): Observable<Array<NodeModel>> {
-    return super.getQuery<any, NodeModel[]>(`node/sources`, {});
+    return super.getQuery<any, NodeModel[]>(`node/destinations`, {});
   }
 
   calculate(request: PathRequestModel): Observable<CalculationResultModel> {
