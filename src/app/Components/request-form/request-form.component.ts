@@ -3,6 +3,7 @@ import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeModel, PathRequestModel } from 'src/app/Core/models';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import { LoadingService } from 'src/app/util/loading-service';
 
 @Component({
   selector: 'app-request-form',
@@ -16,7 +17,6 @@ export class RequestFormComponent implements OnInit {
   calcForm!: FormGroup;
   destinations: FormArray = new FormArray([]);
   sourceControl: FormControl = new FormControl('', [Validators.required]);
-  isLoading = false;
   maxCount = 5;
   minCount = 1;
 
@@ -27,6 +27,7 @@ export class RequestFormComponent implements OnInit {
   public destinationArray: Array<NodeModel> | undefined;
 
   constructor(
+    public loadingService: LoadingService,
     private calcStore: CalcStoreService,
     private formBuilder: FormBuilder) {
   }
@@ -91,11 +92,7 @@ export class RequestFormComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
-    this.calcStore.getCalcResult(payload)
-      .add(() => {
-        this.isLoading = false;
-      });
+    this.calcStore.getCalcResult(payload);
   }
 
   changeSrc() {
