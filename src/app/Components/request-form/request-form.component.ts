@@ -1,7 +1,7 @@
 import { CalcStoreService } from './../../Services/calc-store.service';
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PathRequestModel } from 'src/app/Core/models';
+import { NodeModel, PathRequestModel } from 'src/app/Core/models';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
@@ -23,6 +23,9 @@ export class RequestFormComponent implements OnInit {
   public destinations$ = this.calcStore.destinations$;
   public sources$ = this.calcStore.sources$;
 
+  public sourceArray: Array<NodeModel> | undefined;
+  public destinationArray: Array<NodeModel> | undefined;
+
   constructor(
     private calcStore: CalcStoreService,
     private formBuilder: FormBuilder) {
@@ -41,6 +44,14 @@ export class RequestFormComponent implements OnInit {
     });
 
     this.addItem();
+
+    this.sources$.subscribe(x => {
+      this.sourceArray = x;
+    });
+
+    this.destinations$.subscribe(x => {
+      this.destinationArray = x;
+    });
   }
 
   createItem(): FormGroup {
@@ -60,7 +71,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   submit(): void {
-    const destArray = new Array<string>();
+    debugger;
+    const destArray = new Array<number>();
     for(const c of this.destinations.controls){
       if(c.value.destination){
         destArray.push(c.value.destination);
@@ -103,5 +115,21 @@ export class RequestFormComponent implements OnInit {
       this.calcStore.refillDestinations();
       this.calcStore.refillSources();
     }
+  }
+
+  displayFnSources(value?: number) {
+    if(value) {
+      let result = this.sourceArray?.find(_ => _.id === value)?.name;
+      return result ? result : "";
+    }
+    return  "";
+  }
+
+  displayFnDestinations(value?: number) {
+    if(value) {
+      let result = this.destinationArray?.find(_ => _.id === value)?.name;
+      return result ? result : "";
+    }
+    return  "";
   }
 }

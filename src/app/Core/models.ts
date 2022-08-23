@@ -1,6 +1,6 @@
 export interface PathRequestModel {
-  sourcePoint: string,
-  destinations: Array<string>,
+  sourcePoint: number,
+  destinations: Array<number>,
   useWyvern: boolean,
   useSoe: boolean,
   useShips: boolean,
@@ -26,4 +26,9 @@ export interface CalculationResultModel {
   customPath: Array<PathModel>,
   defaultPrice: number,
   customPrice: number
+}
+
+export interface NodeModel {
+  id: number,
+  name: string
 }

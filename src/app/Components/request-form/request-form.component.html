@@ -12,9 +12,9 @@
         (blur)="handleControlBlur()"
         formControlName="source"
         [matAutocomplete]="autoSource">
-        <mat-autocomplete #autoSource="matAutocomplete">
-         <mat-option *ngFor="let source of (sources$ | async)" [value]="source">
-           {{source}}
+        <mat-autocomplete #autoSource="matAutocomplete" [displayWith]="displayFnSources.bind(this)">
+         <mat-option *ngFor="let source of (sources$ | async)" [value]="source.id">
+           {{source.name}}
          </mat-option>
        </mat-autocomplete>
       </mat-form-field>
@@ -40,9 +40,9 @@
           formControlName="destination"
           (blur)="handleControlBlur()"
           [matAutocomplete]="autoDest">
-          <mat-autocomplete #autoDest="matAutocomplete">
-            <mat-option *ngFor="let destination of (destinations$ | async)" [value]="destination">
-              {{destination}}
+          <mat-autocomplete #autoDest="matAutocomplete" [displayWith]="displayFnDestinations.bind(this)">
+            <mat-option *ngFor="let destination of (destinations$ | async)" [value]="destination.id">
+              {{destination.name}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
