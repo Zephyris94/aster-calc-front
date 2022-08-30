@@ -72,7 +72,6 @@ export class RequestFormComponent implements OnInit {
   }
 
   submit(): void {
-    debugger;
     const destArray = new Array<number>();
     for(const c of this.destinations.controls){
       if(c.value.destination){
