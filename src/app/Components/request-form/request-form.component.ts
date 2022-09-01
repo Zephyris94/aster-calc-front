@@ -14,7 +14,7 @@ export class RequestFormComponent implements OnInit {
   @ViewChildren('autoDest') autoDest!: QueryList<MatAutocomplete>;
 
   calcForm!: FormGroup;
-  destinations: FormArray = new FormArray([]);
+  destinations: FormArray = new FormArray<any>([]);
   sourceControl: FormControl = new FormControl('', [Validators.required]);
   isLoading = false;
   maxCount = 5;

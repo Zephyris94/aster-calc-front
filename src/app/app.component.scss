@@ -1,3 +1,13 @@
 .page-container {
   background-color: grey;
 }
+
+.sticky-header{
+  width: fit-content;
+  position:sticky;
+  margin:auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px!important;
+}
