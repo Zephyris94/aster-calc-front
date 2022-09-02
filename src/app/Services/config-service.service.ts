@@ -10,7 +10,7 @@ export interface AppSettings {
 })
 export class AppSettingsService {
 
-  private appSettings = {
+  private appSettings: AppSettings | undefined = {
     baseUrl: 'http://localhost:4200',
   };
 
@@ -19,10 +19,10 @@ export class AppSettingsService {
   async loadAppSettings(): Promise<void> {
     this.appSettings = await this.httpClient
       .get<AppSettings>('assets/config.json')
-      .toPromise<AppSettings>();
+      .toPromise();
   }
 
   get baseUrl(): string {
-    return this.appSettings.baseUrl;
+    return this.appSettings ? this.appSettings.baseUrl : "";
   }
 }
