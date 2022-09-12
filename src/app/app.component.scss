@@ -10,4 +10,15 @@
   left: 0;
   right: 0;
   height: 40px!important;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.bold-section {
+  font-weight:bold;
 }
