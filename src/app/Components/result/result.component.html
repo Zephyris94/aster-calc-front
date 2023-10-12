@@ -7,7 +7,7 @@
 
     <mat-card-content class="card-part">
       <div *ngFor = "let edge of calcResultToDisplay.defaultPath">
-        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.type)}})
+        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.moveType)}})
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>
@@ -23,7 +23,7 @@
 
     <mat-card-content class="card-part">
       <div *ngFor = "let edge of calcResultToDisplay.customPath">
-        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.type)}})
+        {{ edge.source }} -> {{ edge.destination }} for {{edge.price}}$ (Use {{getMoveType(edge.moveType)}})
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>

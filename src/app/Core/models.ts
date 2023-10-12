@@ -18,7 +18,7 @@ export interface PathModel {
   source: string,
   destination: string,
   price: number,
-  type: MoveType
+  moveType: MoveType
 }
 
 export interface CalculationResultModel {
